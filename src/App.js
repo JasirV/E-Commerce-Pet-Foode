@@ -13,6 +13,7 @@ import Dog from "./Componets/Dog";
 import Cat from "./Componets/Cat";
 import ViewProduct from "./Componets/ViewProduct";
 import Cart from "./Componets/Cart";
+import { Footer } from "./Footer";
 export const AllContext = createContext();
 function App() {
   const [product, setProduct] = useState(Product);
@@ -46,6 +47,7 @@ function App() {
           <Route path="/Cart" element={<Cart />} />
           <Route />
         </Routes>
+        <Footer/>
       </AllContext.Provider>
     </div>
   );
