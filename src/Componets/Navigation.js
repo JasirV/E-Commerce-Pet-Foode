@@ -23,7 +23,7 @@ function Navigation() {
             className="me-auto my-2 my-lg-0"
             style={{ maxHeight: "100px" }}
             navbarScroll>
-            <Nav.Link href="#action1">
+            <Nav.Link onClick={()=>{navigate("/addminhome")}}>
               <h5>Home</h5>
             </Nav.Link>
             <Nav.Link

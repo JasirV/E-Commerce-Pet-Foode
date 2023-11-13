@@ -13,7 +13,9 @@ import Dog from "./Componets/Dog";
 import Cat from "./Componets/Cat";
 import ViewProduct from "./Componets/ViewProduct";
 import Cart from "./Componets/Cart";
-import { Footer } from "./Footer";
+import { Footer } from "./Componets/Footer";
+import AdminHome from "./Admin/AdminHome";
+import Edit from "./Admin/Edit";
 export const AllContext = createContext();
 function App() {
   const [product, setProduct] = useState(Product);
@@ -45,9 +47,11 @@ function App() {
           <Route path="/Cat" element={<Cat />} />
           <Route path="/View/:Id" element={<ViewProduct />} />
           <Route path="/Cart" element={<Cart />} />
+          <Route path="/addminhome" element={<AdminHome />} />
+          <Route path="/Edit" element={<Edit/>}/>
           <Route />
         </Routes>
-        <Footer/>
+        <Footer />
       </AllContext.Provider>
     </div>
   );
