@@ -24,7 +24,7 @@ function App() {
   const [login, setLoging] = useState(false);
   return (
     <div className="App">
-      <Navigation />
+      
 
       <AllContext.Provider
         value={{
@@ -37,7 +37,9 @@ function App() {
           login,
           setLoging,
         }}>
+          <Navigation />
         <Routes>
+        
           <Route path="home" element={<Home />} />
           <Route path="/Login" element={<Loging />} />
           <Route path="/Signup" element={<Signup />} />

@@ -1,3 +1,4 @@
+import { useContext } from "react";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
@@ -5,8 +6,16 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
+import { AllContext } from "../App";
 function Navigation() {
   const navigate = useNavigate();
+ const {login, setLoging}=useContext(AllContext)
+  const handleLogin=()=>{
+    setLoging(true)
+  }
+  const handleLogout=()=>{
+    setLoging(false)
+  }
   return (
     <Navbar expand="lg" className="">
       <Container fluid>
@@ -52,13 +61,16 @@ function Navigation() {
               style={{ marginRight: "1rem", borderRadius: "5rem" }}>
               Search
             </Button>
-            <Nav.Link
-              onClick={() => {
-                navigate("/Login");
-              }}
-              className="m-2">
-              Login
-            </Nav.Link>
+            {login ? (
+              <>
+          <Nav.Link onClick={handleLogout}>Logout</Nav.Link>
+          </>
+      ) : (
+        <>
+          <Nav.Link onClick={() => { handleLogin(); navigate("/Login"); }}>Login</Nav.Link>
+
+          </>
+      )}
             <p className="m-2">|</p>
             <Nav.Link
               className="m-2"
