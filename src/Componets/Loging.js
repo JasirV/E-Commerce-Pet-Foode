@@ -2,6 +2,7 @@ import React, { useContext, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AllContext } from "../App";
 import { useReducer } from "react";
+import { toast } from "react-toastify";
 const Loging = () => {
   const { userData, setLoging } = useContext(AllContext);
   const Navigation = useNavigate();
@@ -18,8 +19,10 @@ const Loging = () => {
     );
     if (user) {
       setLoging(true);
+      toast.success("Thank You Login");
       Navigation("/");
     } else {
+      toast.error("User Not Found");
       setError("Login failed. Invalid username or password.");
     }
   };

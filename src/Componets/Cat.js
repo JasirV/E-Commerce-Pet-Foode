@@ -10,12 +10,12 @@ const Cat = () => {
   return (
     <div>
       <div className="d-flex flex-wrap m-5" style={{ margin: "auto" }}>
-        {catProduct.map((item) => (
+        {catProduct.map((item, index) => (
           <Card
             onClick={() => {
               Navigate(`/View/${item.Id}`);
             }}
-            key={item.id}
+            key={item.id || index}
             className="m-2"
             style={{ width: "16rem", overflow: "hidden" }}>
             <Card.Img

@@ -10,12 +10,12 @@ const Dog = () => {
   return (
     <div>
       <div className="d-flex flex-wrap m-5" style={{ margin: "auto" }}>
-        {dogProduct.map((item) => (
+        {dogProduct.map((item, index) => (
           <Card
             onClick={() => {
               Navigate(`/View/${item.Id}`);
             }}
-            key={item.id}
+            key={item.id || index}
             className="m-2"
             style={{ width: "16rem", overflow: "hidden", margin: "auto" }}>
             <Card.Img

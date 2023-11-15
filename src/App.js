@@ -19,6 +19,10 @@ import Edit from "./Admin/Edit";
 import Users from "./Admin/Users";
 import AdminProduct from "./Admin/AdminProduct";
 import AdminOders from "./Admin/AdminOders";
+import ProductEdit from "./Admin/ProductEdit";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import 'bootstrap-icons/font/bootstrap-icons.css'
 export const AllContext = createContext();
 function App() {
   const [product, setProduct] = useState(Product);
@@ -27,8 +31,6 @@ function App() {
   const [login, setLoging] = useState(false);
   return (
     <div className="App">
-      
-
       <AllContext.Provider
         value={{
           product,
@@ -40,9 +42,8 @@ function App() {
           login,
           setLoging,
         }}>
-          <Navigation />
+        <Navigation />
         <Routes>
-        
           <Route path="home" element={<Home />} />
           <Route path="/Login" element={<Loging />} />
           <Route path="/Signup" element={<Signup />} />
@@ -53,14 +54,16 @@ function App() {
           <Route path="/View/:Id" element={<ViewProduct />} />
           <Route path="/Cart" element={<Cart />} />
           <Route path="/addminhome" element={<AdminHome />} />
-          <Route path="/Edit" element={<Edit/>}/>
-          <Route path='/users' element={<Users/>}/>
-          <Route path="/addminprodut" element={<AdminProduct/>}/>
-          <Route path="/adminOders" element={<AdminOders/>}/>
+          <Route path="/Edit" element={<Edit />} />
+          <Route path="/users" element={<Users />} />
+          <Route path="/addminprodut" element={<AdminProduct />} />
+          <Route path="/adminOders" element={<AdminOders />} />
+          <Route path="/ProductEdit/:Id" element={<ProductEdit />} />
           <Route />
         </Routes>
         <Footer />
       </AllContext.Provider>
+      <ToastContainer />
     </div>
   );
 }

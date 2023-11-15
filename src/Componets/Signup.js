@@ -1,6 +1,8 @@
 import React, { useContext, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AllContext } from "../App";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Signup = () => {
   const Navigation = useNavigate();
@@ -34,10 +36,15 @@ const Signup = () => {
       return;
     }
     setErrorMessage("");
-    
-    const value = { userName: username, emailId: emailId, password: password ,caRt:{}};
-    setUserData([...userData, value]);
 
+    const value = {
+      userName: username,
+      emailId: emailId,
+      password: password,
+      order: [],
+    };
+    setUserData([...userData, value]);
+    toast.success("Success");
     Navigation("/Login");
   };
 

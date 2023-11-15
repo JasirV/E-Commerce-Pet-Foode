@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { AllContext } from "../App";
-import {  Card } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 const Collection = () => {
   const { product } = useContext(AllContext);
@@ -8,15 +8,13 @@ const Collection = () => {
   console.log(product);
   return (
     <div>
-       
       <div className="d-flex flex-wrap m-5" style={{ margin: "auto" }}>
-     
-        {product.map((item) => (
+        {product.map((item, index) => (
           <Card
             onClick={() => {
               Navigate(`/View/${item.Id}`);
             }}
-            key={item.id}
+            key={item.id || index}
             className="m-2"
             style={{ width: "16rem", overflow: "hidden" }}>
             <Card.Img

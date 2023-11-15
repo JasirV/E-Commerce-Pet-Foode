@@ -2,10 +2,13 @@ import React, { useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { AllContext } from "../App";
 import { Button, Card } from "react-bootstrap";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const ViewProduct = () => {
   const navigate = useNavigate();
-  const { product, setCart, login, cart ,userData,setUserData} = useContext(AllContext);
+  const { product, setCart, login, cart, userData, setUserData } =
+    useContext(AllContext);
   const { Id } = useParams();
   const ViewProduct = product.filter((item) => item.Id === parseInt(Id));
   const addItem = () => {
@@ -14,16 +17,17 @@ const ViewProduct = () => {
       const filterCart = cart.filter((item) => item.Id === newpro.Id);
 
       if (filterCart.length > 0) {
-        alert("product already set to cart");
+        toast.error("product already set to cart");
       } else {
         setCart([...cart, newpro]);
-        alert("Successful add to cart");
+        toast.success("Successful add to cart");
       }
     } else {
-      alert("plese log");
+      toast.error("plese log");
       navigate("/login");
     }
-  };console.log(userData);
+  };
+  console.log(userData);
   return (
     <div className="mt-3">
       {ViewProduct.map((item) => (

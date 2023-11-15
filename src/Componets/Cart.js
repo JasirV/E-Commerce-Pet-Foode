@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { AllContext } from "../App";
 import { Button, Card } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const Cart = () => {
   const Navigate = useNavigate();
@@ -12,7 +13,7 @@ const Cart = () => {
     if (!ProductPrice) {
       return;
     }
-    
+
     const updateCart = cart.map((item) => {
       if (item.Id === x && item.Qty < item.Stock) {
         return {
@@ -53,6 +54,7 @@ const Cart = () => {
   const remove = (x) => {
     const remv = cart.filter((item) => item.Id !== x);
     setCart(remv);
+    toast.error("Your Product Is Removed");
   };
 
   const totalprice = cart.reduce(
