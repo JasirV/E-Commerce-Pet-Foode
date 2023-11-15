@@ -5,7 +5,7 @@ import { Button, Card } from "react-bootstrap";
 
 const ViewProduct = () => {
   const navigate = useNavigate();
-  const { product, setCart, login, cart } = useContext(AllContext);
+  const { product, setCart, login, cart ,userData,setUserData} = useContext(AllContext);
   const { Id } = useParams();
   const ViewProduct = product.filter((item) => item.Id === parseInt(Id));
   const addItem = () => {
@@ -17,15 +17,13 @@ const ViewProduct = () => {
         alert("product already set to cart");
       } else {
         setCart([...cart, newpro]);
-
         alert("Successful add to cart");
       }
     } else {
       alert("plese log");
       navigate("/login");
     }
-  };
-  console.log(ViewProduct, "dgdsdhgfhgdhfgjs");
+  };console.log(userData);
   return (
     <div className="mt-3">
       {ViewProduct.map((item) => (

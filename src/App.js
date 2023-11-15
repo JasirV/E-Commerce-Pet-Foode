@@ -16,6 +16,9 @@ import Cart from "./Componets/Cart";
 import { Footer } from "./Componets/Footer";
 import AdminHome from "./Admin/AdminHome";
 import Edit from "./Admin/Edit";
+import Users from "./Admin/Users";
+import AdminProduct from "./Admin/AdminProduct";
+import AdminOders from "./Admin/AdminOders";
 export const AllContext = createContext();
 function App() {
   const [product, setProduct] = useState(Product);
@@ -51,6 +54,9 @@ function App() {
           <Route path="/Cart" element={<Cart />} />
           <Route path="/addminhome" element={<AdminHome />} />
           <Route path="/Edit" element={<Edit/>}/>
+          <Route path='/users' element={<Users/>}/>
+          <Route path="/addminprodut" element={<AdminProduct/>}/>
+          <Route path="/adminOders" element={<AdminOders/>}/>
           <Route />
         </Routes>
         <Footer />

@@ -9,12 +9,10 @@ import { useNavigate } from "react-router-dom";
 import { AllContext } from "../App";
 function Navigation() {
   const navigate = useNavigate();
- const {login, setLoging}=useContext(AllContext)
-  const handleLogin=()=>{
-    setLoging(true)
-  }
+ const {login, setLoging,setCart}=useContext(AllContext)
   const handleLogout=()=>{
-    setLoging(false)
+    setLoging(false);
+    setCart([])
   }
   return (
     <Navbar expand="lg" className="">
@@ -48,11 +46,11 @@ function Navigation() {
               <h5>Cat</h5>
             </Nav.Link>
           </Nav>
-          <Form className="d-flex">
+          <Form className="d-flex ">
             <Form.Control
               type="search"
               placeholder="Search"
-              className="me-2 mr-3"
+              className="me-2 mr-3 "
               aria-label="Search"
               style={{ borderRadius: "5rem" }}
             />
@@ -61,13 +59,14 @@ function Navigation() {
               style={{ marginRight: "1rem", borderRadius: "5rem" }}>
               Search
             </Button>
+            </Form>
             {login ? (
               <>
-          <Nav.Link onClick={handleLogout}>Logout</Nav.Link>
+          <Nav.Link className="m-2" onClick={handleLogout}>Logout</Nav.Link>
           </>
       ) : (
         <>
-          <Nav.Link onClick={() => { handleLogin(); navigate("/Login"); }}>Login</Nav.Link>
+          <Nav.Link className="m-2" onClick={() => {  navigate("/Login"); }}>Login</Nav.Link>
 
           </>
       )}
@@ -79,7 +78,7 @@ function Navigation() {
               }}>
               <AiOutlineShoppingCart />
             </Nav.Link>
-          </Form>
+        
         </Navbar.Collapse>
       </Container>
     </Navbar>

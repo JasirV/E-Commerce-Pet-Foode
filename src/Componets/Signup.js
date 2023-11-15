@@ -34,7 +34,8 @@ const Signup = () => {
       return;
     }
     setErrorMessage("");
-    const value = { userName: username, emailId: emailId, password: password };
+    
+    const value = { userName: username, emailId: emailId, password: password ,caRt:{}};
     setUserData([...userData, value]);
 
     Navigation("/Login");

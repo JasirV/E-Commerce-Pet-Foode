@@ -12,6 +12,7 @@ const Cart = () => {
     if (!ProductPrice) {
       return;
     }
+    
     const updateCart = cart.map((item) => {
       if (item.Id === x && item.Qty < item.Stock) {
         return {
