@@ -22,13 +22,17 @@ import AdminOders from "./Admin/AdminOders";
 import ProductEdit from "./Admin/ProductEdit";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import 'bootstrap-icons/font/bootstrap-icons.css'
+import "bootstrap-icons/font/bootstrap-icons.css";
 export const AllContext = createContext();
 function App() {
   const [product, setProduct] = useState(Product);
   const [cart, setCart] = useState([]);
   const [userData, setUserData] = useState([]);
   const [login, setLoging] = useState(false);
+  const [totalPrice, setTotalPrice] = useState();
+  const [sale, setSale] = useState();
+  const [itemsincart, setItemsincart] = useState(0);
+  const [search, setSearch] = useState("");
   return (
     <div className="App">
       <AllContext.Provider
@@ -41,6 +45,14 @@ function App() {
           setUserData,
           login,
           setLoging,
+          totalPrice,
+          setTotalPrice,
+          sale,
+          setSale,
+          itemsincart,
+          setItemsincart,
+          search,
+          setSearch,
         }}>
         <Navigation />
         <Routes>

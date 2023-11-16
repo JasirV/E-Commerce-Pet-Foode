@@ -1,7 +1,5 @@
 import { useContext } from "react";
-import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
-import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { AiOutlineShoppingCart } from "react-icons/ai";
@@ -9,11 +7,12 @@ import { useNavigate } from "react-router-dom";
 import { AllContext } from "../App";
 function Navigation() {
   const navigate = useNavigate();
- const {login, setLoging,setCart}=useContext(AllContext)
-  const handleLogout=()=>{
+  const { login, setLoging, setCart } = useContext(AllContext);
+  const handleLogout = () => {
     setLoging(false);
-    setCart([])
-  }
+    setCart([]);
+  };
+
   return (
     <Navbar expand="lg" className="">
       <Container fluid>
@@ -30,7 +29,10 @@ function Navigation() {
             className="me-auto my-2 my-lg-0"
             style={{ maxHeight: "100px" }}
             navbarScroll>
-            <Nav.Link onClick={()=>{navigate("/addminhome")}}>
+            <Nav.Link
+              onClick={() => {
+                navigate("/addminhome");
+              }}>
               <h5>Home</h5>
             </Nav.Link>
             <Nav.Link
@@ -46,39 +48,31 @@ function Navigation() {
               <h5>Cat</h5>
             </Nav.Link>
           </Nav>
-          <Form className="d-flex ">
-            <Form.Control
-              type="search"
-              placeholder="Search"
-              className="me-2 mr-3 "
-              aria-label="Search"
-              style={{ borderRadius: "5rem" }}
-            />
-            <Button
-              variant="outline-secondary"
-              style={{ marginRight: "1rem", borderRadius: "5rem" }}>
-              Search
-            </Button>
-            </Form>
-            {login ? (
-              <>
-          <Nav.Link className="m-2" onClick={handleLogout}>Logout</Nav.Link>
-          </>
-      ) : (
-        <>
-          <Nav.Link className="m-2" onClick={() => {  navigate("/Login"); }}>Login</Nav.Link>
-
-          </>
-      )}
-            <p className="m-2">|</p>
-            <Nav.Link
-              className="m-2"
-              onClick={() => {
-                navigate("/Cart");
-              }}>
-              <AiOutlineShoppingCart />
-            </Nav.Link>
-        
+          {login ? (
+            <>
+              <Nav.Link className="m-2" onClick={handleLogout}>
+                Logout
+              </Nav.Link>
+            </>
+          ) : (
+            <>
+              <Nav.Link
+                className="m-2"
+                onClick={() => {
+                  navigate("/Login");
+                }}>
+                Login
+              </Nav.Link>
+            </>
+          )}
+          <p className="m-2">|</p>
+          <Nav.Link
+            className="m-2"
+            onClick={() => {
+              navigate("/Cart");
+            }}>
+            <AiOutlineShoppingCart />
+          </Nav.Link>
         </Navbar.Collapse>
       </Container>
     </Navbar>

@@ -7,8 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 const ViewProduct = () => {
   const navigate = useNavigate();
-  const { product, setCart, login, cart, userData, setUserData } =
-    useContext(AllContext);
+  const { product, setCart, login, cart, userData } = useContext(AllContext);
   const { Id } = useParams();
   const ViewProduct = product.filter((item) => item.Id === parseInt(Id));
   const addItem = () => {

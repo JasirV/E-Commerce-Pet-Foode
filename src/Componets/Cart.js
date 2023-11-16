@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { AllContext } from "../App";
 import { Button, Card } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
@@ -6,8 +6,15 @@ import { toast } from "react-toastify";
 
 const Cart = () => {
   const Navigate = useNavigate();
-  const { cart, setCart, product } = useContext(AllContext);
-
+  const {
+    cart,
+    setCart,
+    product,
+    setTotalPrice,
+    setSale,
+    itemsincart,
+    setItemsincart,
+  } = useContext(AllContext);
   const handleChange = (x) => {
     const ProductPrice = product.find((item) => item.Id === x);
     if (!ProductPrice) {
@@ -20,6 +27,8 @@ const Cart = () => {
           ...item,
           Qty: item.Qty + 1,
           Price: parseFloat(item.Price) + parseFloat(ProductPrice.Price),
+          OldPrice:
+            parseFloat(item.OldPrice) + parseFloat(ProductPrice.OldPrice),
         };
       }
       return item;
@@ -40,8 +49,11 @@ const Cart = () => {
           ...item,
           Qty: item.Qty - 1,
           Price: parseFloat(item.Price) - parseFloat(ProductPrice.Price),
+          OldPrice:
+            parseFloat(item.OldPrice) - parseFloat(ProductPrice.OldPrice),
         };
       }
+
       return item;
     });
     setCart(updateCart);
@@ -61,29 +73,44 @@ const Cart = () => {
     (pre, curr) => pre + parseFloat(curr.Price),
     0
   );
+  setTotalPrice(totalprice);
   const offer = cart.reduce((pre, curr) => pre + parseFloat(curr.OldPrice), 0);
+  const OderNow = () => {
+    setSale([...cart]);
+  };
+  useEffect(() => {
+    const updateincriment = cart.reduce((pre, curr) => pre + curr.Qty, 0);
+    setItemsincart(updateincriment);
+  }, [cart, handleChange, handleChangede, setItemsincart]);
 
   return (
     <>
       <div className="d-flex flex-wrap m-5 ">
         {cart.map((item) => (
           <Card
-            className="m-2"
+            className="m-2 mx-5"
             key={item.Id}
             style={{ width: "16rem", overflow: "hidden", margin: "auto" }}>
             <Card.Img
+              className="img-fluid"
               variant="top"
-              style={{ width: "16rem", height: "25rem" }}
               src={item.Image}
+              style={{ height: "25rem" }}
             />
             <Card.Body>
               <Card.Title>{item.ProductName}</Card.Title>
               <Card.Text>Price: ₹{item.Price}</Card.Text>
-              <Card.Text>Old Price: ₹{item.OldPrice}</Card.Text>
-              <h5 className="border border-secondary p-2">{item.Qty}</h5>
+              <Card.Text>
+                Old Price: <del>₹{item.OldPrice}</del>
+              </Card.Text>
+              <h5
+                className="border border-secondary p-2 w-50 mx-5"
+                style={{ borderRadius: "5rem" }}>
+                {item.Qty}
+              </h5>
               <button
                 className="rounded-circle"
-                style={{ width: "3rem", height: "3rem" }}
+                style={{ width: "3rem", height: "3rem", border: ".2px" }}
                 onClick={() => {
                   handleChange(item.Id);
                 }}>
@@ -91,7 +118,7 @@ const Cart = () => {
               </button>
               <button
                 className="rounded-circle m-2"
-                style={{ width: "3rem", height: "3rem" }}
+                style={{ width: "3rem", height: "3rem", border: ".2px" }}
                 onClick={() => {
                   handleChangede(item.Id);
                 }}>
@@ -120,11 +147,12 @@ const Cart = () => {
               Total: <span className="text-success">₹{totalprice}</span>
             </h3>
             <del className="text-secondary">₹{offer}</del>
-            <h5>{cart.length} Items</h5>
+            <h5>{itemsincart} Items</h5>
             <Button
               className="mt-2"
               onClick={() => {
                 Navigate("/Payment");
+                OderNow();
               }}>
               PLACE ORDER
             </Button>

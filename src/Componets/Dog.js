@@ -19,9 +19,10 @@ const Dog = () => {
             className="m-2"
             style={{ width: "16rem", overflow: "hidden", margin: "auto" }}>
             <Card.Img
+              className="img-fluid"
               variant="top"
-              style={{ width: "16rem", height: "25rem" }}
               src={item.Image}
+              style={{ height: "25rem" }}
             />
             <Card.Body>
               <h6 className="mt-1">₹{item.Price}</h6>
