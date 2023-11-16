@@ -61,6 +61,7 @@ const Cart = () => {
 
   const clear = () => {
     setCart([]);
+    setSale([]);
   };
 
   const remove = (x) => {

@@ -1,12 +1,11 @@
-
-import React, { useContext, useState } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import SaidBar from './SaidBar';
-import { AllContext } from '../App';
+import React, { useContext, useState } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import SaidBar from "./SaidBar";
+import { AllContext } from "../App";
 import "../App.css";
 import Chart from "react-apexcharts";
-import 'apexcharts';
-import 'apexcharts/dist/apexcharts.css';
+import "apexcharts";
+import "apexcharts/dist/apexcharts.css";
 
 function AdminHome() {
   const { userData, product, sale, itemsincart } = useContext(AllContext);
@@ -28,54 +27,53 @@ function AdminHome() {
       {
         name: "Profit",
         data: [42, 17, 93, 56, 30],
-      }
-
+      },
     ],
   });
 
   return (
-    <div className='d-flex ' >
+    <div className="d-flex ">
       <div>
         <SaidBar />
       </div>
-      <div className='m-auto mt-3'>
-        <div className='container-fluid'>
-          <div className='row g-3 my-2'>
-            <div className='col-md-3'>
-              <div className='p-5 bg-white shadow d-flex justify-content-around align-items-center rounded'>
-                <div >
-                  <h3 className='f-2'>{Products}</h3>
+      <div className="m-auto mt-3">
+        <div className="container-fluid">
+          <div className="row g-3 my-2">
+            <div className="col-md-3">
+              <div className="p-5 bg-white shadow d-flex justify-content-around align-items-center rounded">
+                <div>
+                  <h3 className="f-2">{Products}</h3>
 
-                  <p className='fs-5'>Product</p>
+                  <p className="fs-5">Product</p>
                 </div>
-                <i className='bi bi-cart-plus p-3 fs-1'></i>
+                <i className="bi bi-cart-plus p-3 fs-1"></i>
               </div>
             </div>
 
-            <div className='col-md-3'>
-              <div className='p-5 bg-white shadow d-flex justify-content-around align-items-center rounded'>
-                <div  >
-                  <h3 className='fs-2'>{Sale}</h3>
-                  <p className='fs-5'>Sales</p>
+            <div className="col-md-3">
+              <div className="p-5 bg-white shadow d-flex justify-content-around align-items-center rounded">
+                <div>
+                  <h3 className="fs-2">{Sale}</h3>
+                  <p className="fs-5">Sales</p>
                 </div>
                 <i class="bi bi-currency-exchange p-3 fs-1"></i>
               </div>
             </div>
 
-            <div className='col-md-3'>
-              <div className='p-5 bg-white shadow d-flex justify-content-around align-items-center rounded'>
-                <div >
-                  <h3 className='fs-2'>{itemsincart}</h3>
-                  <p className='fs-5'>Delivery</p>
+            <div className="col-md-3">
+              <div className="p-5 bg-white shadow d-flex justify-content-around align-items-center rounded">
+                <div>
+                  <h3 className="fs-2">{itemsincart}</h3>
+                  <p className="fs-5">Delivery</p>
                 </div>
                 <i class="bi bi-truck p-3 fs-1"></i>
               </div>
             </div>
-            <div className='col-md-3'>
-              <div className='p-5 bg-white shadow d-flex justify-content-around align-items-center rounded'>
-                <div  >
-                  <h3 className='fs-2'>{users}</h3>
-                  <p className='fs-5'>Users</p>
+            <div className="col-md-3">
+              <div className="p-5 bg-white shadow d-flex justify-content-around align-items-center rounded">
+                <div>
+                  <h3 className="fs-2">{users}</h3>
+                  <p className="fs-5">Users</p>
                 </div>
                 <i class="bi bi-person p-3 fs-1"></i>
               </div>
@@ -93,7 +91,6 @@ function AdminHome() {
                   </div>
                 </div>
               </div>
-
             </div>
           </div>
         </div>

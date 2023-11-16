@@ -30,7 +30,7 @@ function App() {
   const [userData, setUserData] = useState([]);
   const [login, setLoging] = useState(false);
   const [totalPrice, setTotalPrice] = useState();
-  const [sale, setSale] = useState();
+  const [sale, setSale] = useState([]);
   const [itemsincart, setItemsincart] = useState(0);
   const [search, setSearch] = useState("");
   return (
@@ -56,11 +56,11 @@ function App() {
         }}>
         <Navigation />
         <Routes>
-          <Route path="home" element={<Home />} />
+          <Route path="/" element={<Home />} />
           <Route path="/Login" element={<Loging />} />
           <Route path="/Signup" element={<Signup />} />
           <Route path="/Payment" element={<Payment />} />
-          <Route path="/" element={<Collection />} />
+          <Route path="/collection" element={<Collection />} />
           <Route path="/Dog" element={<Dog />} />
           <Route path="/Cat" element={<Cat />} />
           <Route path="/View/:Id" element={<ViewProduct />} />
