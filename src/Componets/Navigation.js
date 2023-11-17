@@ -12,7 +12,6 @@ function Navigation() {
     setLoging(false);
     setCart([]);
   };
-
   return (
     <Navbar expand="lg" className="">
       <Container fluid>
@@ -21,6 +20,9 @@ function Navigation() {
             src="https://www.findroyalcanin.com/cdn/shop/files/logo.png?v=1684396119"
             className="w-50"
             alt="logo"
+            onClick={() => {
+              navigate("/");
+            }}
           />
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
@@ -31,9 +33,9 @@ function Navigation() {
             navbarScroll>
             <Nav.Link
               onClick={() => {
-                navigate("/addminhome");
+                navigate("/collection");
               }}>
-              <h5>Home</h5>
+              <h5>All Category</h5>
             </Nav.Link>
             <Nav.Link
               onClick={() => {

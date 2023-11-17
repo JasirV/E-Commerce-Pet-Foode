@@ -2,6 +2,8 @@ import React, { useContext } from "react";
 import { AllContext } from "../App";
 import { Button, Card, Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import Navigation from "./Navigation";
+import { Footer } from "./Footer";
 const Collection = () => {
   const { product, search, setSearch } = useContext(AllContext);
   const Navigate = useNavigate();
@@ -16,11 +18,16 @@ const Collection = () => {
   });
 
   return (
-    <div>
+    <div >
+      <Navigation/>
+      <div className="mt-5">
+      <hr />
+      <h1 style={{ textAlign: "start", fontSize: "3em", fontWeight: "bold" }} className="m-2 mx-3 ">All Product</h1>
       <div
         className="mx-5"
         style={{ display: "flex", justifyContent: "flex-end" }}>
         <div>
+
           <Form className="d-flex">
             <div className="position-relative">
               <Form.Control
@@ -65,6 +72,8 @@ const Collection = () => {
           </Card>
         ))}
       </div>
+      </div>
+      <Footer/>
     </div>
   );
 };

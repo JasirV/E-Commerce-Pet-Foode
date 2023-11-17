@@ -3,6 +3,8 @@ import { AllContext } from "../App";
 import { Button, Card } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import Navigation from "./Navigation";
+import { MDBIcon } from "mdb-react-ui-kit";
 
 const Cart = () => {
   const Navigate = useNavigate();
@@ -14,6 +16,7 @@ const Cart = () => {
     setSale,
     itemsincart,
     setItemsincart,
+    login,
   } = useContext(AllContext);
   const handleChange = (x) => {
     const ProductPrice = product.find((item) => item.Id === x);
@@ -86,6 +89,7 @@ const Cart = () => {
 
   return (
     <>
+      <Navigation />
       <div className="d-flex flex-wrap m-5 ">
         {cart.map((item) => (
           <Card
@@ -138,36 +142,41 @@ const Cart = () => {
           </Card>
         ))}
       </div>
-      <div style={{ marginLeft: "20%" }}>
-        <Card
-          className="m-2 w-75 p-2 mr-5 shadow"
-          style={{ overflow: "hidden" }}>
-          <Card.Title>{}</Card.Title>
-          <Card.Body>
-            <h3>
-              Total: <span className="text-success">₹{totalprice}</span>
-            </h3>
-            <del className="text-secondary">₹{offer}</del>
-            <h5>{itemsincart} Items</h5>
-            <Button
-              className="mt-2"
-              onClick={() => {
-                Navigate("/Payment");
-                OderNow();
-              }}>
-              PLACE ORDER
-            </Button>
-            <br />
-            <Button
-              onClick={() => {
-                clear();
-              }}
-              className="mt-2 btn btn-light">
-              Clear Cart
-            </Button>
-          </Card.Body>
-        </Card>
-      </div>
+      {login ? (
+        <div style={{ marginLeft: "20%" }}>
+          <Card
+            className="m-2 w-75 p-2 mr-5 shadow"
+            style={{ overflow: "hidden" }}>
+            <Card.Title>{}</Card.Title>
+            <Card.Body>
+              <h3>
+                Total: <span className="text-success">₹{totalprice}</span>
+              </h3>
+              <del className="text-secondary">₹{offer}</del>
+              <h5>{itemsincart} Items</h5>
+              <MDBIcon
+                fas
+                icon="truck"
+                className="mt-2"
+                onClick={() => {
+                  Navigate("/Payment");
+                  OderNow();
+                }}
+              />
+              <br />
+              <Button
+                onClick={() => {
+                  clear();
+                }}
+                className="mt-2 btn btn-light">
+                Clear Cart
+              </Button>
+            </Card.Body>
+          </Card>
+        </div>
+      ) : (
+        <h1>NOProduct</h1>
+      )}
     </>
   );
 };

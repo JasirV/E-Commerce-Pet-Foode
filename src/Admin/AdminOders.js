@@ -1,16 +1,32 @@
 import React, { useContext } from "react";
 import SaidBar from "./SaidBar";
 import { AllContext } from "../App";
-import { MDBCard, MDBCardBody, MDBCardImage, MDBCol, MDBContainer, MDBRow, MDBTypography } from "mdb-react-ui-kit";
+import {
+  MDBCard,
+  MDBCardBody,
+  MDBCardImage,
+  MDBCol,
+  MDBContainer,
+  MDBRow,
+  MDBTypography,
+} from "mdb-react-ui-kit";
 
 const AdminOders = () => {
-  const { sale } = useContext(AllContext)
+  const { sale } = useContext(AllContext);
   return (
     <div className="d-flex">
       <div>
         <SaidBar />
       </div>
-      <div>
+      <div
+        fluid
+        className="mt-3"
+        style={{
+          overflow: "scroll",
+          height: "90vh",
+          overflow: "auto",
+          height: "90vh",
+        }}>
         <MDBContainer className="py-5 h-100">
           <MDBRow className="justify-content-center align-items-center h-100">
             <MDBCol md="10">
@@ -33,18 +49,35 @@ const AdminOders = () => {
                   <MDBCardBody className="p-4">
                     <MDBRow className="justify-content-between align-items-center">
                       <MDBCol md="12" lg="6" xl="4">
-                        <MDBCardImage className="rounded-3" fluid src={item.Image} alt="products" />
+                        <MDBCardImage
+                          className="rounded-3"
+                          fluid
+                          src={item.Image}
+                          alt="products"
+                        />
                       </MDBCol>
                       <MDBCol md="12" lg="6" xl="8">
-                        <p className="lead fw-normal mb-2">{item.ProductName}</p>
+                        <p className="lead fw-normal mb-2">
+                          {item.ProductName}
+                        </p>
                         <p>
-                          <span className="text-muted">Animal:{item.Animal} </span>
+                          <span className="text-muted">
+                            Animal:{item.Animal}{" "}
+                          </span>
                           <br />
-                          <span className="text-muted">Stock:{item.Stock} </span>
+                          <span className="text-muted">
+                            Stock:{item.Stock}{" "}
+                          </span>
                         </p>
                       </MDBCol>
-                      <MDBCol md="12" lg="6" xl="4" className="d-flex align-items-center justify-content-around">
-                        <span className="border border-secondary p-3 mt-2">{item.Qty}</span>
+                      <MDBCol
+                        md="12"
+                        lg="6"
+                        xl="4"
+                        className="d-flex align-items-center justify-content-around">
+                        <span className="border border-secondary p-3 mt-2">
+                          {item.Qty}
+                        </span>
                       </MDBCol>
                       <MDBCol md="12" lg="6" xl="4">
                         <MDBTypography tag="h5" className="mb-0">
@@ -53,8 +86,7 @@ const AdminOders = () => {
                       </MDBCol>
 
                       <MDBCol md="12" lg="6" xl="4" className="text-end">
-                        <a href="#!" className="text-danger">
-                        </a>
+                        <a href="#!" className="text-danger"></a>
                       </MDBCol>
                     </MDBRow>
                   </MDBCardBody>

@@ -76,7 +76,10 @@ function Edit() {
       <div>
         <SaidBar />
       </div>
-      <div className="mt-2 w-75" style={{ margin: "auto" }}>
+      <div
+        fluid
+        className="mt-3 w-75"
+        style={{ margin: "auto", overflow: "auto", height: "90vh" }}>
         <Form
           className="rounded shadow p-5 mb-5 bg-white"
           onSubmit={handleSubmit}>

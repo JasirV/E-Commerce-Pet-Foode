@@ -36,7 +36,8 @@ function AdminHome() {
       <div>
         <SaidBar />
       </div>
-      <div className="m-auto mt-3">
+      <div fluid
+        style={{ overflow: "auto", height: "90vh" }} className="m-auto mt-3">
         <div className="container-fluid">
           <div className="row g-3 my-2">
             <div className="col-md-3">

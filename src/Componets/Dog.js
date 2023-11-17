@@ -2,6 +2,8 @@ import React, { useContext } from "react";
 import { AllContext } from "../App";
 import { Card } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import { Footer } from "./Footer";
+import Navigation from "./Navigation";
 
 const Dog = () => {
   const { product } = useContext(AllContext);
@@ -9,6 +11,7 @@ const Dog = () => {
   const dogProduct = product.filter((iteam) => iteam.Animal === "Dog");
   return (
     <div>
+      <Navigation/>
       <div className="d-flex flex-wrap m-5" style={{ margin: "auto" }}>
         {dogProduct.map((item, index) => (
           <Card
@@ -32,6 +35,7 @@ const Dog = () => {
           </Card>
         ))}
       </div>
+      <Footer/>
     </div>
   );
 };

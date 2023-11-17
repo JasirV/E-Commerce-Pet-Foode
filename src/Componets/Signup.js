@@ -53,7 +53,6 @@ const Signup = () => {
       className="rounded shadow p-3 mb-5 bg-white "
       style={{
         margin: "auto",
-        height: "55vh",
         width: "25rem",
         marginTop: "10%",
       }}>

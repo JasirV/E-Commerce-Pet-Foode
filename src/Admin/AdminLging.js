@@ -1,11 +1,15 @@
-import React, { useContext, useRef, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { AllContext } from "../App";
-import { useReducer } from "react";
+import React, { useReducer, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-const Loging = () => {
-  const { userData, setLoging } = useContext(AllContext);
+
+function AdminLging() {
   const Navigation = useNavigate();
+  const [admin, setadmin] = useState([
+    {
+      userName: "admin",
+      password: "password",
+    },
+  ]);
   const [error, setError] = useState("");
   const usernameRef = useReducer("");
   const PasswordRef = useRef("");
@@ -14,13 +18,12 @@ const Loging = () => {
     const username = usernameRef.current.value;
     const password = PasswordRef.current.value;
 
-    const user = userData.find(
+    const user = admin.find(
       (item) => item.userName === username && item.password === password
     );
     if (user) {
-      setLoging(true);
       toast.success("Thank You Login");
-      Navigation("/");
+      Navigation("/addminhome");
     } else {
       toast.error("User Not Found");
       setError("Login failed. Invalid username or password.");
@@ -37,9 +40,9 @@ const Loging = () => {
       }}>
       <form>
         <h1 className="mt-3" style={{ fontFamily: "serif" }}>
-          LOGIN
+          Admin Login
         </h1>
-        <p className="mt-4">Please enter your username and password!</p>
+        <p className="mt-4">Please enter Admin username and password!</p>
         <input
           ref={usernameRef}
           className="p-2 w-75 mt-2"
@@ -63,10 +66,9 @@ const Loging = () => {
           type="password"
           placeholder="Password"
         />
-        <h6 className="mt-3 text-primary">Forgot Password</h6>
         {error && <p style={{ color: "red" }}>{error}</p>}
         <button
-          className="rounded mt-2 w-50 p-2"
+          className="rounded mt-4 w-50 p-2"
           style={{
             background: "#176BEF ",
             border: "1px",
@@ -76,20 +78,9 @@ const Loging = () => {
           onClick={submit}>
           Login
         </button>
-        <p className="mt-2">
-          Don't have on account?
-          <Link style={{ textDecoration: "none" }} to="/Signup">
-            Signup
-          </Link>
-        </p>
-        <i
-          class="fas fa-user-secret"
-          onClick={() => {
-            Navigation("/adminLoging");
-          }}></i>
       </form>
     </div>
   );
-};
+}
 
-export default Loging;
+export default AdminLging;

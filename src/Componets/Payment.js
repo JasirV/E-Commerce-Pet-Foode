@@ -10,11 +10,14 @@ import {
   MDBRow,
 } from "mdb-react-ui-kit";
 import { AllContext } from "../App";
+import Navigation from "./Navigation";
+import { Footer } from "./Footer";
 
 const Payment = () => {
   const {totalPrice}=useContext(AllContext)
   return (
     <div>
+      <Navigation/>
         <MDBContainer fluid className="py-5" style={{ backgroundColor: "#eee" }}>
       <MDBRow className="d-flex justify-content-center">
         <MDBCol md="12" lg="10" xl="8">
@@ -105,7 +108,7 @@ const Payment = () => {
         </MDBCol>
       </MDBRow>
     </MDBContainer>
-
+    <Footer/>
         </div>
   );
 };

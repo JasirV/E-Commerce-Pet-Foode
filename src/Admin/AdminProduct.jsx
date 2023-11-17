@@ -4,6 +4,7 @@ import { useContext } from 'react'
 import { AllContext } from '../App'
 import { Button, Card } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
+import { MDBBtn, MDBIcon } from 'mdb-react-ui-kit'
 
 const AdminProduct = () => {
     const { product, setProduct } = useContext(AllContext)
@@ -18,7 +19,8 @@ const AdminProduct = () => {
                 <SaidBar />
             </div>
 
-            <div className="d-flex flex-wrap m-5" style={{ margin: "auto" }}>
+            <div fluid
+     className="d-flex flex-wrap m-5" style={{ margin: "auto" ,overflow: "auto", height: "90vh"}}>
                 {product.map((item, index) => (
                     <Card
                         key={item.id || index}
@@ -33,8 +35,8 @@ const AdminProduct = () => {
                             <h6 className="mt-1">₹{item.Price}</h6>
                             <del className="text-secondary">₹{item.OldPrice}</del>
                             <Card.Title>{item.ProductName}</Card.Title>
-                            <Button className='m-2' onClick={() => Navigation(`/ProductEdit/${item.Id}`)}>Edit</Button>
-                            <Button className='m-2 btn btn-danger' onClick={() => { handleChange(item.Id) }} type='button'>Remove</Button>
+                            <MDBIcon far icon="edit" className='mx-2 p-2' onClick={() => Navigation(`/ProductEdit/${item.Id}`)}/>
+                            <MDBIcon fas icon="trash" className='mx-2 p-2' onClick={() => { handleChange(item.Id) }} />
                         </Card.Body>
                     </Card>
                 ))}

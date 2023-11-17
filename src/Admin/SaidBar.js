@@ -25,7 +25,7 @@ const SaidBar = () => {
         <CDBSidebarContent textColor="#FFFFFF" className="sidebar-content">
           <CDBSidebarMenu>
             <NavLink to="/addminhome" activeClassName="activeClicked">
-              <CDBSidebarMenuItem icon="user">Admin Home</CDBSidebarMenuItem>
+              <CDBSidebarMenuItem icon="th-large">Admin Home</CDBSidebarMenuItem>
             </NavLink>
             <NavLink to="/users" activeClassName="activeClicked">
               <CDBSidebarMenuItem icon="users">Users</CDBSidebarMenuItem>
@@ -39,9 +39,11 @@ const SaidBar = () => {
             <NavLink to="/Edit" activeClassName="activeClicked">
               <CDBSidebarMenuItem icon="plus">Add Product</CDBSidebarMenuItem>
             </NavLink>
+            <NavLink to="/" activeClassName="activeClicked">
+              <CDBSidebarMenuItem icon="home">Home</CDBSidebarMenuItem>
+            </NavLink>
           </CDBSidebarMenu>
         </CDBSidebarContent>
-
         <CDBSidebarFooter style={{ textAlign: "center" }}></CDBSidebarFooter>
       </CDBSidebar>
     </div>

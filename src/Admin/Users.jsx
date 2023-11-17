@@ -1,8 +1,9 @@
-import React from 'react'
-import { useContext } from 'react'
-import { AllContext } from '../App'
-import prologo from '../img/Profile-720.png'
-import SaidBar from './SaidBar'
+import React from 'react';
+import { useContext } from 'react';
+import { AllContext } from '../App';
+import prologo from '../img/Profile-720.png';
+import SaidBar from './SaidBar';
+
 const Users = () => {
   const { userData } = useContext(AllContext);
   return (
@@ -10,23 +11,49 @@ const Users = () => {
       <div>
         <SaidBar />
       </div>
-
-      <div className='w-100 d-flex p-2' style={{ textAlign: 'center', justifyContent: "center", flexWrap: "wrap", }}>
-        {userData.map((item) => (
-          <div className='w-100  mt-2' >
-            <div className='contaner bg-success rounded d-flex' style={{ textAlign: "start" }}>
-              <img className='m-2' style={{ width: "5rem", height: "5rem", }} src={prologo} alt="" />
-              <div>
-                <h3 className='m-2'>{item.userName}</h3>
-                <h6>{item.password}</h6>
-                <h6>{item.emailId}</h6>
-              </div>
-            </div>
-          </div>
-        ))}
+      {userData.length>0?(
+      <div fluid
+     className="d-flex flex-wrap m-5 w-100" style={{ margin: "auto" ,overflow: "auto", height: "90vh"}}>
+      <div fluid className='w-100 d-flex p-2'>
+        <table className="table align-middle mb-0 bg-white">
+          <thead className="bg-light">
+            <tr>
+              <th>Name</th>            
+              <th>Email Id</th>
+              <th>Password</th>
+            </tr>
+          </thead>
+        {userData.map((item)=>(
+          <tbody>
+            <tr>
+              <td>
+                <div className="d-flex align-items-center p-2">
+                  <img
+                    src={prologo}
+                    alt=""
+                    style={{ width: '45px', height: '45px' }}
+                    className="rounded-circle"
+                  />
+                  <div className="ms-3">
+                    <p className="fw-bold mb-1">{item.userName.toUpperCase()}</p>
+                  </div>
+                </div>
+              </td>
+              <td>
+              <p className="text-muted mb-0">{ item.emailId}</p>
+              </td>
+              <td>
+                <p>{item.password}</p>
+              </td>
+            </tr>
+          </tbody>
+           ))}
+        </table>
       </div>
-    </div>
-  )
+    </div>):(<h1 style={{margin:"auto"}}>NO USERS</h1>)
 }
+    </div>
+  );
+};
 
-export default Users
+export default Users;

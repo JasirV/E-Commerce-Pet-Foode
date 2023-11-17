@@ -2,7 +2,6 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Loging from "./Componets/Loging";
 import Signup from "./Componets/Signup";
-import Navigation from "./Componets/Navigation";
 import Payment from "./Componets/Payment";
 import { Product } from "./Componets/ProducetData";
 import { createContext, useState } from "react";
@@ -13,16 +12,16 @@ import Dog from "./Componets/Dog";
 import Cat from "./Componets/Cat";
 import ViewProduct from "./Componets/ViewProduct";
 import Cart from "./Componets/Cart";
-import { Footer } from "./Componets/Footer";
 import AdminHome from "./Admin/AdminHome";
 import Edit from "./Admin/Edit";
 import Users from "./Admin/Users";
 import AdminProduct from "./Admin/AdminProduct";
 import AdminOders from "./Admin/AdminOders";
 import ProductEdit from "./Admin/ProductEdit";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
+import AdminLging from "./Admin/AdminLging";
 export const AllContext = createContext();
 function App() {
   const [product, setProduct] = useState(Product);
@@ -54,7 +53,6 @@ function App() {
           search,
           setSearch,
         }}>
-        <Navigation />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/Login" element={<Loging />} />
@@ -71,9 +69,9 @@ function App() {
           <Route path="/addminprodut" element={<AdminProduct />} />
           <Route path="/adminOders" element={<AdminOders />} />
           <Route path="/ProductEdit/:Id" element={<ProductEdit />} />
+          <Route path="/adminLoging" element={<AdminLging />} />
           <Route />
         </Routes>
-        <Footer />
       </AllContext.Provider>
       <ToastContainer />
     </div>
