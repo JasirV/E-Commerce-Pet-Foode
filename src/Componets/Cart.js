@@ -9,8 +9,7 @@ import { MDBIcon } from "mdb-react-ui-kit";
 const Cart = () => {
   const Navigate = useNavigate();
   const {
-    cart,
-    setCart,
+    sale,
     product,
     totalPrice,
     setTotalPrice,
@@ -23,6 +22,11 @@ const Cart = () => {
     offer,
   } = useContext(AllContext);
   const [userCart, setUserCart] = useState(loginUser.order);
+  useEffect(()=>{
+    setUserCart(loginUser.order)
+  },[])
+  
+
   useEffect(() => {
     if (!login) {
       setUserCart([]);
@@ -71,16 +75,18 @@ const Cart = () => {
     });
 
     setUserCart(updateCart);
-    console.log(userCart, "usercart");
   };
 
   const clear = () => {
-    setUserCart([]);
+    console.log("button Clicked");
+    loginUser.order=[];
+    setUserCart([])
   };
 
   const remove = (x) => {
-    const remv = userCart.filter((item) => item.Id !== x);
-    setUserCart(remv);
+    const updatedCart = userCart.filter((item) => item.Id !== x);
+    setUserCart(updatedCart);
+    loginUser.order=updatedCart
     toast.error("Your Product Is Removed");
   };
 
@@ -109,6 +115,15 @@ const Cart = () => {
 
   const OderNow = () => {
     setSale([...userCart]);
+    setUserCart([]);
+  };
+  const Buyproduct = (x) => {
+    const buyitem = userCart.find((item) => item.Id === x);
+    const remv = userCart.filter((item) => item.Id !== x);
+    loginUser.order=remv
+    setUserCart(remv)
+    setSale([...sale, buyitem]);
+    toast.info("Your Product is Shipping");
   };
 
   return (
@@ -154,7 +169,7 @@ const Cart = () => {
                 -
               </button>
               <br />
-              <Button className=" m-2">Buy</Button>
+              <Button className=" m-2" onClick={()=>{Buyproduct(item.Id)}}>Buy</Button>
               <button
                 className=" m-2 btn btn-light"
                 onClick={() => {
@@ -189,9 +204,7 @@ const Cart = () => {
               />
               <br />
               <Button
-                onClick={() => {
-                  clear();
-                }}
+                onClick={()=>clear()}
                 className="mt-2 btn btn-light">
                 Clear Cart
               </Button>

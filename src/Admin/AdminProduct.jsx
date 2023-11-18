@@ -20,7 +20,7 @@ const AdminProduct = () => {
             </div>
 
             <div fluid
-     className="d-flex flex-wrap m-5" style={{ margin: "auto" ,overflow: "auto", height: "90vh"}}>
+                className="d-flex flex-wrap m-5" style={{ margin: "auto", overflow: "auto", height: "90vh" }}>
                 {product.map((item, index) => (
                     <Card
                         key={item.id || index}
@@ -35,7 +35,7 @@ const AdminProduct = () => {
                             <h6 className="mt-1">₹{item.Price}</h6>
                             <del className="text-secondary">₹{item.OldPrice}</del>
                             <Card.Title>{item.ProductName}</Card.Title>
-                            <MDBIcon far icon="edit" className='mx-2 p-2' onClick={() => Navigation(`/ProductEdit/${item.Id}`)}/>
+                            <MDBIcon far icon="edit" className='mx-2 p-2' onClick={() => Navigation(`/ProductEdit/${item.Id}`)} />
                             <MDBIcon fas icon="trash" className='mx-2 p-2' onClick={() => { handleChange(item.Id) }} />
                         </Card.Body>
                     </Card>

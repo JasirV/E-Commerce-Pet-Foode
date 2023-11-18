@@ -22,25 +22,12 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import AdminLging from "./Admin/AdminLging";
-import UsersOders from "./Componets/UsersOders";
+import UsersOders from "./Admin/UsersOders";
 export const AllContext = createContext();
 function App() {
   const [product, setProduct] = useState(Product);
   const [cart, setCart] = useState([]);
-  const [userData, setUserData] = useState([
-    {userName:"jasir",
-    emailId: "fggfh@.in",
-    password: 123456,
-    order: [],},
-    {userName:"jasir",
-    emailId: "fggfh@.in",
-    password: 123456,
-    order: [],},
-    {userName:"jasir",
-    emailId: "fggfh@.in",
-    password: 123456,
-    order: [],},
-  ]);
+  const [userData, setUserData] = useState([]);
   const [login, setLoging] = useState(false);
   const [totalPrice, setTotalPrice] = useState();
   const [offer, setOffer] = useState();
@@ -90,7 +77,7 @@ function App() {
           <Route path="/adminOders" element={<AdminOders />} />
           <Route path="/ProductEdit/:Id" element={<ProductEdit />} />
           <Route path="/adminLoging" element={<AdminLging />} />
-          <Route path="/users/:Id" element={<UsersOders/>}/>
+          <Route path="/users/:Id" element={<UsersOders />} />
           <Route />
         </Routes>
       </AllContext.Provider>

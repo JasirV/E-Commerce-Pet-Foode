@@ -1,23 +1,21 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import SaidBar from '../Admin/SaidBar';
+import SaidBar from './SaidBar';
 import { Card } from 'react-bootstrap';
 import { AllContext } from '../App'; 
 
 const UsersOders = () => {
     const { userData } = useContext(AllContext);
-    const { userName } = useParams();
-    
-    // Ensure user data exists and has the 'order' property
-    const userProduct = userData.find((item) => item.userName === userName);
-    const mapData = userProduct ? userProduct.order : [];
-
+    const { Id } = useParams();
+    const userProduct = userData.find((item) => item.userName === Id);
+    const [mapData,setMapData]=useState(userProduct.order);
     return (
-        <div>
+        <div className='d-flex'>
             <div>
                 <SaidBar />
             </div>
-            <div className="d-flex flex-wrap m-5" style={{ margin: "auto" }}>
+            <div  fluid
+              className="d-flex flex-wrap m-5" style={{ margin: "auto" ,overflow: "auto", height: "90vh"}}>
                 {mapData.map((item, index) => (
                     <Card
                         key={item.id || index}
