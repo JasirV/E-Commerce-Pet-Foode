@@ -9,19 +9,22 @@ import Navigation from "./Navigation";
 const ViewProduct = () => {
   const navigate = useNavigate();
   const [btn, setBtn] = useState(true);
-  const { product, setCart, login, cart, userData, setUserData } =
+  const { product, setCart, login, cart, userData, setUserData,loginUser } =
     useContext(AllContext);
   const { Id } = useParams();
   const ViewProduct = product.filter((item) => item.Id === parseInt(Id));
+  console.log(loginUser);
   const addItem = () => {
     if (login) {
       const [newpro] = ViewProduct;
-      const filterCart = cart.filter((item) => item.Id === newpro.Id);
+      const filterCart = loginUser.order.filter((item)=>item.Id===newpro.Id);
+      
+      // const filterCart = cart.filter((item) => item.Id === newpro.Id);
       if (filterCart.length > 0) {
         toast.error("product already set to cart");
         setBtn(false);
       } else {
-        setCart([...cart, newpro]);
+        loginUser.order.push({...newpro,qty:1})
         console.log(userData);
         toast.success("Successful add to cart");
       }

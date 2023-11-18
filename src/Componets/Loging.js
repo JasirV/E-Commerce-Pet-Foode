@@ -4,7 +4,7 @@ import { AllContext } from "../App";
 import { useReducer } from "react";
 import { toast } from "react-toastify";
 const Loging = () => {
-  const { userData, setLoging } = useContext(AllContext);
+  const { userData, setLoging,setLoginUser } = useContext(AllContext);
   const Navigation = useNavigate();
   const [error, setError] = useState("");
   const usernameRef = useReducer("");
@@ -19,6 +19,9 @@ const Loging = () => {
     );
     if (user) {
       setLoging(true);
+      setLoginUser(user)
+      
+      console.log(user);
       toast.success("Thank You Login");
       Navigation("/");
     } else {

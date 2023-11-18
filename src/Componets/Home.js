@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
   MDBBtn,
   MDBCarousel,
@@ -10,8 +10,11 @@ import { useNavigate } from "react-router-dom";
 import Collection from "./Collection";
 import Navigation from "./Navigation";
 import { Footer } from "./Footer";
+import { AllContext } from "../App";
 const Home = () => {
+  const { userData, setLoging,loginUser,setLoginUser } = useContext(AllContext);
   const navigate = useNavigate();
+  console.log(loginUser);
   return (
     <>
     <Navigation/>

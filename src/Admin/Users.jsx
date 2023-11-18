@@ -3,9 +3,12 @@ import { useContext } from 'react';
 import { AllContext } from '../App';
 import prologo from '../img/Profile-720.png';
 import SaidBar from './SaidBar';
+import { useNavigate } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
 
 const Users = () => {
   const { userData } = useContext(AllContext);
+  const Navigate=useNavigate()
   return (
     <div className='d-flex'>
       <div>
@@ -24,7 +27,7 @@ const Users = () => {
             </tr>
           </thead>
         {userData.map((item)=>(
-          <tbody>
+          <tbody >
             <tr>
               <td>
                 <div className="d-flex align-items-center p-2">
@@ -35,7 +38,7 @@ const Users = () => {
                     className="rounded-circle"
                   />
                   <div className="ms-3">
-                    <p className="fw-bold mb-1">{item.userName.toUpperCase()}</p>
+                    <p className="fw-bold mb-1" >{item.userName.toUpperCase()}</p>
                   </div>
                 </div>
               </td>
@@ -44,6 +47,9 @@ const Users = () => {
               </td>
               <td>
                 <p>{item.password}</p>
+              </td>
+              <td>
+                <button className='btn'  onClick={()=>{Navigate(`/users/${item.userName}`)}}><i class="fab fa-opencart"></i></button>
               </td>
             </tr>
           </tbody>

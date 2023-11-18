@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { AllContext } from "../App";
 import { Button, Card } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
@@ -12,23 +12,34 @@ const Cart = () => {
     cart,
     setCart,
     product,
+    totalPrice,
     setTotalPrice,
     setSale,
     itemsincart,
     setItemsincart,
     login,
+    loginUser,
+    setOffer,
+    offer,
   } = useContext(AllContext);
+  const [userCart, setUserCart] = useState(loginUser.order);
+  useEffect(() => {
+    if (!login) {
+      setUserCart([]);
+    } else {
+    }
+  }, [login, setUserCart]);
   const handleChange = (x) => {
     const ProductPrice = product.find((item) => item.Id === x);
     if (!ProductPrice) {
       return;
     }
 
-    const updateCart = cart.map((item) => {
-      if (item.Id === x && item.Qty < item.Stock) {
+    const updateCart = userCart.map((item) => {
+      if (item.Id === x && item.qty < item.Stock) {
         return {
           ...item,
-          Qty: item.Qty + 1,
+          qty: item.qty + 1,
           Price: parseFloat(item.Price) + parseFloat(ProductPrice.Price),
           OldPrice:
             parseFloat(item.OldPrice) + parseFloat(ProductPrice.OldPrice),
@@ -36,12 +47,12 @@ const Cart = () => {
       }
       return item;
     });
-    setCart(updateCart);
+    setUserCart(updateCart);
   };
 
   const handleChangede = (x) => {
-    const updateCart = cart.map((item) => {
-      if (item.Id === x && item.Qty > 1) {
+    const updateCart = userCart.map((item) => {
+      if (item.Id === x && item.qty > 1) {
         const ProductPrice = product.find(
           (productItem) => productItem.Id === x
         );
@@ -50,48 +61,61 @@ const Cart = () => {
         }
         return {
           ...item,
-          Qty: item.Qty - 1,
+          qty: item.qty - 1,
           Price: parseFloat(item.Price) - parseFloat(ProductPrice.Price),
           OldPrice:
             parseFloat(item.OldPrice) - parseFloat(ProductPrice.OldPrice),
         };
       }
-
       return item;
     });
-    setCart(updateCart);
+
+    setUserCart(updateCart);
+    console.log(userCart, "usercart");
   };
 
   const clear = () => {
-    setCart([]);
-    setSale([]);
+    setUserCart([]);
   };
 
   const remove = (x) => {
-    const remv = cart.filter((item) => item.Id !== x);
-    setCart(remv);
+    const remv = userCart.filter((item) => item.Id !== x);
+    setUserCart(remv);
     toast.error("Your Product Is Removed");
   };
 
-  const totalprice = cart.reduce(
-    (pre, curr) => pre + parseFloat(curr.Price),
-    0
-  );
-  setTotalPrice(totalprice);
-  const offer = cart.reduce((pre, curr) => pre + parseFloat(curr.OldPrice), 0);
-  const OderNow = () => {
-    setSale([...cart]);
-  };
   useEffect(() => {
-    const updateincriment = cart.reduce((pre, curr) => pre + curr.Qty, 0);
-    setItemsincart(updateincriment);
-  }, [cart, handleChange, handleChangede, setItemsincart]);
+    if (userCart && userCart.length > 0) {
+      const totalprice = userCart.reduce(
+        (pre, curr) => pre + parseFloat(curr.Price),
+        0
+      );
+      setTotalPrice(totalprice);
+  
+      const offer = userCart.reduce(
+        (pre, curr) => pre + parseFloat(curr.OldPrice),
+        0
+      );
+      setOffer(offer);
+  
+      const updateincriment = userCart.reduce((pre, curr) => pre + curr.qty, 0);
+      setItemsincart(updateincriment);
+    } else {
+      setTotalPrice(0);
+      setOffer(0);
+      setItemsincart(0);
+    }
+  }, [userCart, setTotalPrice, setItemsincart, setOffer]);
+
+  const OderNow = () => {
+    setSale([...userCart]);
+  };
 
   return (
     <>
       <Navigation />
       <div className="d-flex flex-wrap m-5 ">
-        {cart.map((item) => (
+        {userCart && userCart.length > 0 && userCart.map((item) => (
           <Card
             className="m-2 mx-5"
             key={item.Id}
@@ -111,7 +135,7 @@ const Cart = () => {
               <h5
                 className="border border-secondary p-2 w-50 mx-5"
                 style={{ borderRadius: "5rem" }}>
-                {item.Qty}
+                {item.qty}
               </h5>
               <button
                 className="rounded-circle"
@@ -150,7 +174,7 @@ const Cart = () => {
             <Card.Title>{}</Card.Title>
             <Card.Body>
               <h3>
-                Total: <span className="text-success">₹{totalprice}</span>
+                Total: <span className="text-success">₹{totalPrice}</span>
               </h3>
               <del className="text-secondary">₹{offer}</del>
               <h5>{itemsincart} Items</h5>
