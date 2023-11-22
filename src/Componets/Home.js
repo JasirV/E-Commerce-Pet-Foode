@@ -13,27 +13,35 @@ const Home = () => {
   const navigate = useNavigate();
   return (
     <>
-    <Navigation/>
+      <Navigation />
       <div>
-        <MDBCarousel showControls >
+        <MDBCarousel showControls>
           <MDBCarouselItem itemId={1}>
             <img
-              src='https://cdn.royalcanin-weshare-online.io/YiKN3GsBaxEApS7LJiHi/v1/69-uk-global-dog-and-cat-eating-with-crown-news-black-and-white-colour'
+              src="https://cdn.royalcanin-weshare-online.io/YiKN3GsBaxEApS7LJiHi/v1/69-uk-global-dog-and-cat-eating-with-crown-news-black-and-white-colour"
               className="d-block w-100"
               alt="..."
             />
-           <MDBCarouselCaption style={{ position: 'absolute', left: '22%', transform: 'translateX(-50%)', textAlign: 'left', top: '50%', marginTop: '-50px', width: '80%', maxWidth: '600px' }}>
-  <button
-    type="button"
-    className="btn btn-outline-danger w-50"
-    onClick={() => {
-      navigate("/collection");
-    }}>
-    BUY NOW
-  </button>
-</MDBCarouselCaption>
-
-
+            <MDBCarouselCaption
+              style={{
+                position: "absolute",
+                left: "22%",
+                transform: "translateX(-50%)",
+                textAlign: "left",
+                top: "50%",
+                marginTop: "-50px",
+                width: "80%",
+                maxWidth: "600px",
+              }}>
+              <button
+                type="button"
+                className="btn btn-outline-danger w-50"
+                onClick={() => {
+                  navigate("/collection");
+                }}>
+                BUY NOW
+              </button>
+            </MDBCarouselCaption>
           </MDBCarouselItem>
           <MDBCarouselItem itemId={2}>
             <img
@@ -64,8 +72,8 @@ const Home = () => {
             </button>
           </MDBCarouselItem>
         </MDBCarousel>
-      </div> 
-      <Collection/>
+      </div>
+      <Collection />
       <Footer />
     </>
   );

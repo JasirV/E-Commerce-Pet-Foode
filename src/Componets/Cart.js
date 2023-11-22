@@ -22,10 +22,9 @@ const Cart = () => {
     offer,
   } = useContext(AllContext);
   const [userCart, setUserCart] = useState(loginUser.order);
-  useEffect(()=>{
-    setUserCart(loginUser.order)
-  },[])
-  
+  useEffect(() => {
+    setUserCart(loginUser.order);
+  }, []);
 
   useEffect(() => {
     if (!login) {
@@ -79,14 +78,14 @@ const Cart = () => {
 
   const clear = () => {
     console.log("button Clicked");
-    loginUser.order=[];
-    setUserCart([])
+    loginUser.order = [];
+    setUserCart([]);
   };
 
   const remove = (x) => {
     const updatedCart = userCart.filter((item) => item.Id !== x);
     setUserCart(updatedCart);
-    loginUser.order=updatedCart
+    loginUser.order = updatedCart;
     toast.error("Your Product Is Removed");
   };
 
@@ -97,13 +96,13 @@ const Cart = () => {
         0
       );
       setTotalPrice(totalprice);
-  
+
       const offer = userCart.reduce(
         (pre, curr) => pre + parseFloat(curr.OldPrice),
         0
       );
       setOffer(offer);
-  
+
       const updateincriment = userCart.reduce((pre, curr) => pre + curr.qty, 0);
       setItemsincart(updateincriment);
     } else {
@@ -120,8 +119,8 @@ const Cart = () => {
   const Buyproduct = (x) => {
     const buyitem = userCart.find((item) => item.Id === x);
     const remv = userCart.filter((item) => item.Id !== x);
-    loginUser.order=remv
-    setUserCart(remv)
+    loginUser.order = remv;
+    setUserCart(remv);
     sale.push([buyitem]);
     toast.info("Your Product is Shipping");
   };
@@ -130,56 +129,64 @@ const Cart = () => {
     <>
       <Navigation />
       <div className="d-flex flex-wrap m-5 ">
-        {userCart && userCart.length > 0 && userCart.map((item) => (
-          <Card
-            className="m-2 mx-5"
-            key={item.Id}
-            style={{ width: "16rem", overflow: "hidden", margin: "auto" }}>
-            <Card.Img
-              className="img-fluid"
-              variant="top"
-              src={item.Image}
-              style={{ height: "25rem" }}
-            />
-            <Card.Body>
-              <Card.Title>{item.ProductName}</Card.Title>
-              <Card.Text>Price: ₹{item.Price}</Card.Text>
-              <Card.Text>
-                Old Price: <del>₹{item.OldPrice}</del>
-              </Card.Text>
-              <h5
-                className="border border-secondary p-2 w-50 mx-5"
-                style={{ borderRadius: "5rem" }}>
-                {item.qty}
-              </h5>
-              <button
-                className="rounded-circle"
-                style={{ width: "3rem", height: "3rem", border: ".2px" }}
-                onClick={() => {
-                  handleChange(item.Id);
-                }}>
-                +
-              </button>
-              <button
-                className="rounded-circle m-2"
-                style={{ width: "3rem", height: "3rem", border: ".2px" }}
-                onClick={() => {
-                  handleChangede(item.Id);
-                }}>
-                -
-              </button>
-              <br />
-              <Button className=" m-2" onClick={()=>{Buyproduct(item.Id)}}>Buy</Button>
-              <button
-                className=" m-2 btn btn-light"
-                onClick={() => {
-                  remove(item.Id);
-                }}>
-                Remove
-              </button>
-            </Card.Body>
-          </Card>
-        ))}
+        {userCart &&
+          userCart.length > 0 &&
+          userCart.map((item) => (
+            <Card
+              className="m-2 mx-5"
+              key={item.Id}
+              style={{ width: "16rem", overflow: "hidden", margin: "auto" }}>
+              <Card.Img
+                className="img-fluid"
+                variant="top"
+                src={item.Image}
+                style={{ height: "25rem" }}
+              />
+              <Card.Body>
+                <Card.Title>{item.ProductName}</Card.Title>
+                <Card.Text>Price: ₹{item.Price}</Card.Text>
+                <Card.Text>
+                  Old Price: <del>₹{item.OldPrice}</del>
+                </Card.Text>
+                <h5
+                  className="border border-secondary p-2 w-50 mx-5"
+                  style={{ borderRadius: "5rem" }}>
+                  {item.qty}
+                </h5>
+                <button
+                  className="rounded-circle"
+                  style={{ width: "3rem", height: "3rem", border: ".2px" }}
+                  onClick={() => {
+                    handleChange(item.Id);
+                  }}>
+                  +
+                </button>
+                <button
+                  className="rounded-circle m-2"
+                  style={{ width: "3rem", height: "3rem", border: ".2px" }}
+                  onClick={() => {
+                    handleChangede(item.Id);
+                  }}>
+                  -
+                </button>
+                <br />
+                <Button
+                  className=" m-2"
+                  onClick={() => {
+                    Buyproduct(item.Id);
+                  }}>
+                  Buy
+                </Button>
+                <button
+                  className=" m-2 btn btn-light"
+                  onClick={() => {
+                    remove(item.Id);
+                  }}>
+                  Remove
+                </button>
+              </Card.Body>
+            </Card>
+          ))}
       </div>
       {login ? (
         <div style={{ marginLeft: "20%" }}>
@@ -203,9 +210,7 @@ const Cart = () => {
                 }}
               />
               <br />
-              <Button
-                onClick={()=>clear()}
-                className="mt-2 btn btn-light">
+              <Button onClick={() => clear()} className="mt-2 btn btn-light">
                 Clear Cart
               </Button>
             </Card.Body>

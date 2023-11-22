@@ -11,8 +11,8 @@ const Cat = () => {
   const catProduct = product.filter((item) => item.Animal === "Cat");
   return (
     <div>
-      <Navigation/>
-      <hr />  
+      <Navigation />
+      <hr />
       <div className="d-flex flex-wrap m-3 justify-content-center">
         {catProduct.map((item, index) => (
           <Card
@@ -22,13 +22,23 @@ const Cat = () => {
             key={item.id || index}
             className="m-2"
             style={{ width: "16rem", overflow: "hidden" }}>
-              <div style={{ overflow: 'hidden', borderTopLeftRadius: '8px', borderTopRightRadius: '8px', display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%' }}>
-            <Card.Img
-              className="img-fluid"
-              variant="top"
-              src={item.Image}
-              style={{ height:'16rem', width:'12rem' }}
-            /></div>
+            <div
+              style={{
+                overflow: "hidden",
+                borderTopLeftRadius: "8px",
+                borderTopRightRadius: "8px",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                width: "100%",
+              }}>
+              <Card.Img
+                className="img-fluid"
+                variant="top"
+                src={item.Image}
+                style={{ height: "16rem", width: "12rem" }}
+              />
+            </div>
             <Card.Body>
               <h6 className="mt-1">₹{item.Price}</h6>
               <del className="text-secondary">₹{item.OldPrice}</del>
@@ -37,7 +47,7 @@ const Cat = () => {
           </Card>
         ))}
       </div>
-      <Footer/>
+      <Footer />
     </div>
   );
 };

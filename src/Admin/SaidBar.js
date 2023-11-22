@@ -25,7 +25,9 @@ const SaidBar = () => {
         <CDBSidebarContent textColor="#FFFFFF" className="sidebar-content">
           <CDBSidebarMenu>
             <NavLink to="/addminhome" activeClassName="activeClicked">
-              <CDBSidebarMenuItem icon="th-large">Admin Home</CDBSidebarMenuItem>
+              <CDBSidebarMenuItem icon="th-large">
+                Admin Home
+              </CDBSidebarMenuItem>
             </NavLink>
             <NavLink to="/users" activeClassName="activeClicked">
               <CDBSidebarMenuItem icon="users">Users</CDBSidebarMenuItem>

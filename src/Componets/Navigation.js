@@ -8,7 +8,7 @@ import { AllContext } from "../App";
 import { Button, Form } from "react-bootstrap";
 function Navigation() {
   const navigate = useNavigate();
-  const { login, setLoging, setCart,setSearch} = useContext(AllContext);
+  const { login, setLoging, setCart, setSearch } = useContext(AllContext);
   const handleLogout = () => {
     setLoging(false);
     setCart([]);
@@ -52,18 +52,18 @@ function Navigation() {
             </Nav.Link>
           </Nav>
           <Form className="d-flex">
-              <Form.Control
-                type="search"
-                placeholder="Search"
-                className="me-2 my-3 mr-3"
-                aria-label="Search"
-                style={{ borderRadius: "5rem" }}
-                onChange={(e) => setSearch(e.target.value)}
-              />
+            <Form.Control
+              type="search"
+              placeholder="Search"
+              className="me-2 my-3 mr-3"
+              aria-label="Search"
+              style={{ borderRadius: "5rem" }}
+              onChange={(e) => setSearch(e.target.value)}
+            />
             <Button
               className="m-3 mx-2"
               variant="outline-secondary"
-              style={{ borderRadius: "5rem" ,border:"1px gray solid"}}
+              style={{ borderRadius: "5rem", border: "1px gray solid" }}
               type="submit">
               Search
             </Button>
@@ -71,14 +71,17 @@ function Navigation() {
 
           {login ? (
             <>
-            <Nav.Link style={{ fontSize: '1.2rem' }} className="m-1" onClick={handleLogout}>
-  Logout
-</Nav.Link>
+              <Nav.Link
+                style={{ fontSize: "1.2rem" }}
+                className="m-1"
+                onClick={handleLogout}>
+                Logout
+              </Nav.Link>
             </>
           ) : (
             <>
               <Nav.Link
-              style={{ fontSize: '1.2rem' }}
+                style={{ fontSize: "1.2rem" }}
                 className="m-1"
                 onClick={() => {
                   navigate("/Login");
@@ -93,8 +96,7 @@ function Navigation() {
             onClick={() => {
               navigate("/Cart");
             }}>
-  <AiOutlineShoppingCart style={{ fontSize: '1.3em' }} />
-
+            <AiOutlineShoppingCart style={{ fontSize: "1.3em" }} />
           </Nav.Link>
         </Navbar.Collapse>
       </Container>
