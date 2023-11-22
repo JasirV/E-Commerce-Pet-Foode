@@ -8,6 +8,7 @@ import image from "../img/Cat-removebg-preview.png";
 import { useNavigate } from "react-router-dom";
 import Navigation from "./Navigation";
 import { Footer } from "./Footer";
+import Collection from "./Collection";
 const Home = () => {
   const navigate = useNavigate();
   return (
@@ -17,20 +18,22 @@ const Home = () => {
         <MDBCarousel showControls >
           <MDBCarouselItem itemId={1}>
             <img
-              src="https://scontent.fccj8-1.fna.fbcdn.net/v/t39.30808-6/273581251_1790384177964881_503367807611658517_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=5f2048&_nc_ohc=WQBWkuj3P8QAX_RDElK&_nc_ht=scontent.fccj8-1.fna&oh=00_AfBBWC8tsGn-Z_6ikSBscfbOFd4OXIWiw9TBhA9mjuFrJA&oe=655B4C1B"
+              src='https://cdn.royalcanin-weshare-online.io/YiKN3GsBaxEApS7LJiHi/v1/69-uk-global-dog-and-cat-eating-with-crown-news-black-and-white-colour'
               className="d-block w-100"
               alt="..."
             />
-            <MDBCarouselCaption>
-              <button
-                type="button"
-                className="btn btn-outline-danger"
-                onClick={() => {
-                  navigate("/collection");
-                }}>
-                BUY NOW
-              </button>
-            </MDBCarouselCaption>
+           <MDBCarouselCaption style={{ position: 'absolute', left: '22%', transform: 'translateX(-50%)', textAlign: 'left', top: '50%', marginTop: '-50px', width: '80%', maxWidth: '600px' }}>
+  <button
+    type="button"
+    className="btn btn-outline-danger w-50"
+    onClick={() => {
+      navigate("/collection");
+    }}>
+    BUY NOW
+  </button>
+</MDBCarouselCaption>
+
+
           </MDBCarouselItem>
           <MDBCarouselItem itemId={2}>
             <img
@@ -62,6 +65,7 @@ const Home = () => {
           </MDBCarouselItem>
         </MDBCarousel>
       </div> 
+      <Collection/>
       <Footer />
     </>
   );

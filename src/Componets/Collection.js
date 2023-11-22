@@ -1,11 +1,11 @@
 import React, { useContext } from "react";
 import { AllContext } from "../App";
-import { Button, Card, Form } from "react-bootstrap";
+import { Button, Card } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import Navigation from "./Navigation";
 import { Footer } from "./Footer";
 const Collection = () => {
-  const { product, search, setSearch } = useContext(AllContext);
+  const { product, search } = useContext(AllContext);
   const Navigate = useNavigate();
   const Search = product.filter((item) => {
     if (search === "") {
@@ -20,29 +20,11 @@ const Collection = () => {
   return (
     <div >
       <div>
-      <Navigation/>
       </div>
       <div>
       <hr />
       <div className="d-flex" style={{justifyContent:"space-between"}}>
       <h5 className="mx-5" style={{ textAlign: "center", fontSize: "2.5em", fontWeight: "bold" }} >All Product</h5>
-          <Form className="d-flex">
-              <Form.Control
-                type="search"
-                placeholder="Search"
-                className="me-2 my-3 mr-3"
-                aria-label="Search"
-                style={{ borderRadius: "5rem" }}
-                onChange={(e) => setSearch(e.target.value)}
-              />
-            <Button
-              className="m-3 mx-2"
-              variant="outline-secondary"
-              style={{ borderRadius: "5rem" ,border:"1px gray solid"}}
-              type="submit">
-              Search
-            </Button>
-          </Form>
       </div>
       <div className="d-flex flex-wrap m-3 justify-content-center">
         {Search.map((item, index) => (

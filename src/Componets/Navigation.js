@@ -5,15 +5,16 @@ import Navbar from "react-bootstrap/Navbar";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import { AllContext } from "../App";
+import { Button, Form } from "react-bootstrap";
 function Navigation() {
   const navigate = useNavigate();
-  const { login, setLoging, setCart } = useContext(AllContext);
+  const { login, setLoging, setCart,setSearch} = useContext(AllContext);
   const handleLogout = () => {
     setLoging(false);
     setCart([]);
   };
   return (
-    <Navbar expand="lg" className="">
+    <Navbar sticky="top" expand="lg" className="bg-white">
       <Container fluid>
         <Navbar.Brand href="#">
           <img
@@ -33,7 +34,7 @@ function Navigation() {
             navbarScroll>
             <Nav.Link
               onClick={() => {
-                navigate("/collection");
+                navigate("/");
               }}>
               <h5>All Category</h5>
             </Nav.Link>
@@ -50,6 +51,24 @@ function Navigation() {
               <h5>Cat</h5>
             </Nav.Link>
           </Nav>
+          <Form className="d-flex">
+              <Form.Control
+                type="search"
+                placeholder="Search"
+                className="me-2 my-3 mr-3"
+                aria-label="Search"
+                style={{ borderRadius: "5rem" }}
+                onChange={(e) => setSearch(e.target.value)}
+              />
+            <Button
+              className="m-3 mx-2"
+              variant="outline-secondary"
+              style={{ borderRadius: "5rem" ,border:"1px gray solid"}}
+              type="submit">
+              Search
+            </Button>
+          </Form>
+
           {login ? (
             <>
             <Nav.Link style={{ fontSize: '1.2rem' }} className="m-1" onClick={handleLogout}>
