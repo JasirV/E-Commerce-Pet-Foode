@@ -63,7 +63,7 @@ function Edit() {
 
     if (Object.keys(newErrors).length === 0) {
       setProduct([...product, { ...formData, Id: formData.Id + 1 }]);
-      navigate("/");
+      navigate("/addminprodut");
     } else {
       setErrors(newErrors);
     }

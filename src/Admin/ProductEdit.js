@@ -1,12 +1,12 @@
 import React, { useContext, useState } from "react";
 import { AllContext } from "../App";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Button } from "react-bootstrap";
-import Cart from "../Componets/Cart";
 
 const ProductEdit = () => {
-  const { product, setProduct, cart, setCart } = useContext(AllContext);
+  const { product, setProduct, userData, setUserData } = useContext(AllContext);
   const { Id } = useParams();
+  const Navigation = useNavigate();
   const ViewProduct = product.find((item) => item.Id === parseInt(Id));
   const [formData, setFormData] = useState({
     Id: ViewProduct.Id,
@@ -21,7 +21,7 @@ const ProductEdit = () => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    if (name == "ProductName") {
+    if (name === "ProductName") {
       setFormData({
         ...formData,
         [name]: value.toUpperCase(),
@@ -38,12 +38,21 @@ const ProductEdit = () => {
     const updatedProducts = product.map((item) =>
       item.Id === parseInt(Id) ? { ...item, ...formData } : item
     );
-    console.log(updatedProducts);
     setProduct(updatedProducts);
-    const updateCart = cart.map((item) =>
-      item.Id === parseInt(Id) ? { ...item, ...formData } : item
-    );
-    setCart(updateCart);
+    const userCartUpdate = userData.map((item) => {
+      if (item && item.orders) {
+        const ordersArray = [...item.orders];
+        const data = ordersArray.map((it) =>
+          it.Id === parseInt(Id) ? { ...it, ...formData } : it
+        );
+
+        return { ...item, orders: data };
+      } else {
+        return item;
+      }
+    });
+
+    setUserData(userCartUpdate);
   };
   return (
     <div style={{ height: "100vh" }}>
@@ -137,7 +146,13 @@ const ProductEdit = () => {
               </tr>
             </tbody>
           </table>
-          <Button onClick={onSubmit}>Save</Button>
+          <Button
+            onClick={() => {
+              onSubmit();
+              Navigation("/addminprodut");
+            }}>
+            Save
+          </Button>
         </div>
       </div>
     </div>

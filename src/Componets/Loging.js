@@ -7,7 +7,7 @@ const Loging = () => {
   const { userData, setLoging, setLoginUser } = useContext(AllContext);
   const Navigation = useNavigate();
   const [error, setError] = useState("");
-  const usernameRef = useReducer("");
+  const usernameRef = useRef(""); 
   const PasswordRef = useRef("");
   const submit = (e) => {
     e.preventDefault();
@@ -20,8 +20,6 @@ const Loging = () => {
     if (user) {
       setLoging(true);
       setLoginUser(user);
-
-      console.log(user);
       toast.success("Thank You Loging");
       Navigation("/");
     } else {
@@ -30,6 +28,9 @@ const Loging = () => {
     }
   };
   return (
+    <div>
+      <div><Navigation/></div>
+    
     <div
       className="rounded shadow p-3 mb-5 bg-white "
       style={{
@@ -91,6 +92,7 @@ const Loging = () => {
             Navigation("/adminLoging");
           }}></i>
       </form>
+    </div>
     </div>
   );
 };

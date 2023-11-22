@@ -52,14 +52,15 @@ function Navigation() {
           </Nav>
           {login ? (
             <>
-              <Nav.Link className="m-2" onClick={handleLogout}>
-                Logout
-              </Nav.Link>
+            <Nav.Link style={{ fontSize: '1.2rem' }} className="m-1" onClick={handleLogout}>
+  Logout
+</Nav.Link>
             </>
           ) : (
             <>
               <Nav.Link
-                className="m-2"
+              style={{ fontSize: '1.2rem' }}
+                className="m-1"
                 onClick={() => {
                   navigate("/Login");
                 }}>
@@ -67,13 +68,14 @@ function Navigation() {
               </Nav.Link>
             </>
           )}
-          <p className="m-2">|</p>
+          <p className="m-1">|</p>
           <Nav.Link
-            className="m-2"
+            className="m-1 mx-"
             onClick={() => {
               navigate("/Cart");
             }}>
-            <AiOutlineShoppingCart />
+  <AiOutlineShoppingCart style={{ fontSize: '1.3em' }} />
+
           </Nav.Link>
         </Navbar.Collapse>
       </Container>

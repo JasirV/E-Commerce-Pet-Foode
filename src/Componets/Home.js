@@ -61,7 +61,7 @@ const Home = () => {
             </button>
           </MDBCarouselItem>
         </MDBCarousel>
-      </div>
+      </div> 
       <Footer />
     </>
   );

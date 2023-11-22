@@ -19,57 +19,64 @@ const Collection = () => {
 
   return (
     <div >
+      <div>
       <Navigation/>
-      <div className="mt-5">
+      </div>
+      <div>
       <hr />
-      <h1 style={{ textAlign: "start", fontSize: "3em", fontWeight: "bold" }} className="m-2 mx-3 ">All Product</h1>
-      <div
-        className="mx-5"
-        style={{ display: "flex", justifyContent: "flex-end" }}>
-        <div>
-
+      <div className="d-flex" style={{justifyContent:"space-between"}}>
+      <h5 className="mx-5" style={{ textAlign: "center", fontSize: "2.5em", fontWeight: "bold" }} >All Product</h5>
           <Form className="d-flex">
-            <div className="position-relative">
               <Form.Control
                 type="search"
                 placeholder="Search"
-                className="me-2 my-2 mr-3"
+                className="me-2 my-3 mr-3"
                 aria-label="Search"
                 style={{ borderRadius: "5rem" }}
                 onChange={(e) => setSearch(e.target.value)}
               />
-            </div>
             <Button
-              className="m-2"
+              className="m-3 mx-2"
               variant="outline-secondary"
-              style={{ borderRadius: "5rem" }}
+              style={{ borderRadius: "5rem" ,border:"1px gray solid"}}
               type="submit">
               Search
             </Button>
           </Form>
-        </div>
       </div>
-      <div className="d-flex flex-wrap m-5" style={{ margin: "auto" }}>
+      <div className="d-flex flex-wrap m-3 justify-content-center">
         {Search.map((item, index) => (
           <Card
-            onClick={() => {
-              Navigate(`/View/${item.Id}`);
-            }}
-            key={item.id || index}
-            className="m-2"
-            style={{ width: "16rem", overflow: "hidden" }}>
-            <Card.Img
-              className="img-fluid"
-              variant="top"
-              src={item.Image}
-              style={{ height: "25rem" }}
-            />
-            <Card.Body>
-              <h6 className="mt-1">₹{item.Price}</h6>
-              <del className="text-secondary">₹{item.OldPrice}</del>
-              <Card.Title>{item.ProductName}</Card.Title>
-            </Card.Body>
-          </Card>
+          onClick={() => {
+            Navigate(`/View/${item.Id}`);
+          }}
+          key={item.id || index}
+          className="m-2"
+          style={{ width: '16rem', overflow: 'hidden', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', borderRadius: '8px' }}
+        >
+         <div style={{ overflow: 'hidden', borderTopLeftRadius: '8px', borderTopRightRadius: '8px', display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%' }}>
+  <Card.Img
+    className="img-fluid m-2"
+    variant="top"
+    src={item.Image}
+    alt={item.ProductName}
+    style={{ height: '16rem', width: '12rem', objectFit: 'cover' }}
+  />
+</div>
+
+          <Card.Body>
+            <h6 className="mt-1">₹{item.Price}</h6>
+            {item.OldPrice && (
+              <del className="text-secondary" style={{ fontSize: '0.9rem' }}>
+                ₹{item.OldPrice}
+              </del>
+            )}
+            <Card.Title style={{ fontSize: '1.2rem', fontWeight: 'bold', marginTop: '0.5rem' }}>{item.ProductName}</Card.Title>
+            <Button variant="primary" style={{ marginTop: '1rem' }}>
+              View Details
+            </Button>
+          </Card.Body>
+        </Card>
         ))}
       </div>
       </div>

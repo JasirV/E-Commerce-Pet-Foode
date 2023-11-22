@@ -114,7 +114,7 @@ const Cart = () => {
   }, [userCart, setTotalPrice, setItemsincart, setOffer]);
 
   const OderNow = () => {
-    setSale([...userCart]);
+    setSale.push([...userCart]);
     setUserCart([]);
   };
   const Buyproduct = (x) => {
@@ -122,7 +122,7 @@ const Cart = () => {
     const remv = userCart.filter((item) => item.Id !== x);
     loginUser.order=remv
     setUserCart(remv)
-    setSale([...sale, buyitem]);
+    sale.push([buyitem]);
     toast.info("Your Product is Shipping");
   };
 

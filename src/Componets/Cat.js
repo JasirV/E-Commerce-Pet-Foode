@@ -12,13 +12,8 @@ const Cat = () => {
   return (
     <div>
       <Navigation/>
-      <hr />
-      <h1
-        style={{ textAlign: "start", fontSize: "3em", fontWeight: "bold" }}
-        className="m-2 mx-3 ">
-        Cat
-      </h1>
-      <div className="d-flex flex-wrap m-5" style={{ margin: "auto" }}>
+      <hr />  
+      <div className="d-flex flex-wrap m-3 justify-content-center">
         {catProduct.map((item, index) => (
           <Card
             onClick={() => {
@@ -27,12 +22,13 @@ const Cat = () => {
             key={item.id || index}
             className="m-2"
             style={{ width: "16rem", overflow: "hidden" }}>
+              <div style={{ overflow: 'hidden', borderTopLeftRadius: '8px', borderTopRightRadius: '8px', display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%' }}>
             <Card.Img
               className="img-fluid"
               variant="top"
               src={item.Image}
-              style={{ height: "25rem" }}
-            />
+              style={{ height:'16rem', width:'12rem' }}
+            /></div>
             <Card.Body>
               <h6 className="mt-1">₹{item.Price}</h6>
               <del className="text-secondary">₹{item.OldPrice}</del>
